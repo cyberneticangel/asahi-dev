@@ -26,11 +26,14 @@ M5 ADT against T8140 first and T8132 second.
 
 ## 2. Step 0: set up
 
-- [ ] Build m1n1 in the flake devshell (`make`). For early-UART debug output, set
-      `#define TARGET T8142` in `m1n1/config.h:22`.
+Step-by-step walkthrough (Linux host, stock-macOS M5): [`m5-setup-guide.md`](m5-setup-guide.md).
+
+- [ ] Build m1n1 in the flake devshell (`make`). `#define TARGET T8142` is already set in
+      `m1n1/config.h:23` for early-UART debug output.
 - [ ] Get the proxyclient talking to the M5 (USB-C debug / dockchannel UART).
-- [ ] Dump the ADT: `python -m m1n1.adt -r <out>` (`m1n1/proxyclient/m1n1/adt.py:875`).
-      Save as `notes/adt/m5-<model>-<macOS ver>.txt`.
+- [ ] Dump the ADT: `python -m m1n1.adt -r <out>.bin > <out>.txt` (`m1n1/proxyclient/m1n1/adt.py:875`).
+      `-r` writes the raw binary to `<out>.bin`, and the decoded tree goes to stdout.
+      Save as `notes/adt/m5-<model>-<macOS ver>.{bin,txt}`.
 - [ ] Save `proxyclient/tools/dump_pmgr.py` output next to it.
 - [ ] Get T8140 and T8132 ADT dumps to diff against (from the m1n1 / Asahi folks, or the
       linux-asahi 7.4 DTs as a proxy).
